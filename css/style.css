@@ -1,0 +1,155 @@
+[center]{
+    text-align: center;
+}
+body{
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+header{
+    height: 5em;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    & img{
+        height: 3em;
+    }
+    
+    & a{
+        margin: 1em;
+        color: gray;
+        font-weight: 800;
+        font-size: 2em;
+        & :hover{
+            text-decoration: none;
+        }
+    }
+}
+main{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+footer{
+    height: 5em;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    bottom: 0;
+    position: absolute;
+    & img{
+        height: 3em;
+    }
+}
+.new{
+    margin: 10px;
+    & img{
+        width: 100%;
+    }
+}
+.new-button{
+    & button{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+    }
+}
+
+form {
+    width: 30%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #eceaff;
+    text-align: center;
+    color: gray;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #4d4d4d;
+    font-size: large;
+    margin: 5px 0;
+    border: 0;
+    font-weight: 500;
+    border-bottom: 5px ridge ;
+    border-radius: 5px;
+}
+
+button {
+    width: 90%;
+    border-radius: 5px;
+    color: #4d4d4d;
+    background-color: #f0f0cd;
+    font-weight: 700;
+    margin: 5px;
+    font-size: 1.5em;
+}
+.veri-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+.drag-container{
+    border: #4d4d4d solid 5px;
+    background-color: #ececec;
+    display: flex;
+    margin: 5px;
+    border-radius: 3px;
+    flex-direction: row;
+    width: 90%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+.drop-container{
+    display: flex;
+    margin: 5px;
+    border-radius: 3px;
+    flex-direction: row;
+    width: 90%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+.drop-box {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.drag-item {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    border: #4d4d4d solid;
+    color: #eceaff;
+    background-color: gray;
+    font-size: 40px;
+    text-align: center;
+    z-index: 88;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}

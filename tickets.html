@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tickets</title>
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/jquery.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="home.html">Home</a>
+        <a href="news.html">News</a>
+        <img src="./img/logo.png" alt="LOGO" />
+        <a href="business.html">Business</a>
+        <a href="tickets.html">Tickets</a>
+    </header>
+    <main>
+        <form method="post" action="./tickets.php" id="tickets">
+            <h2>First name(名字)</h2>
+            <input type="text" name="first-name" required />
+            <h2>Last name(姓氏)</h2>
+            <input type="text" name="last-name" required />
+            <h2>Phone(手機)</h2>
+            <input type="text" name="phone" required />
+            <h2>Password(會員密碼)</h2>
+            <input type="password" name="password" required />
+            <h2>Verification(數字驗證)</h2>
+            <div class="veri-box">
+                <div class="drag-container">
+                    <span class="drag-item" id="drag-1"></span>
+                    <span class="drag-item" id="drag-2"></span>
+                    <span class="drag-item" id="drag-3"></span>
+                    <span class="drag-item" id="drag-4"></span>
+                </div>
+                <div class="drop-container">
+                    <span class="drop-box" id="drop-1" data-id=""></span>
+                    <span class="drop-box" id="drop-2" data-id=""></span>
+                    <span class="drop-box" id="drop-3" data-id=""></span>
+                    <span class="drop-box" id="drop-4" data-id=""></span>
+                </div>
+            </div>
+            <button onclick="location.reload();" type="button">Reset</button>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <img src="./img/facebook.png" alt="" />
+        <img src="./img/google.png" alt="" />
+        Copyright © 2024 FIBEX All Rights Reserved
+    </footer>
+    <script>
+        function veri() {
+            let numbers = [];
+            $(".drop-box").empty().data("id", "");
+            while (numbers.length < 4) {
+                let randomNumber = Math.floor(Math.random() * 9) + 1;
+                if (!numbers.includes(randomNumber)) {
+                    numbers.push(randomNumber);
+                }
+            }
+            $(".drag-item").each(function (index) {
+                $(this)
+                    .text(numbers[index])
+                    .data("id", numbers[index])
+                    .draggable({
+                        revert: "invalid",
+                        helper: "original"
+                    });
+            });
+            $(".drop-box").droppable({
+                accept: ".drag-item",
+                drop: function (event, ui) {
+                    var $this = $(this);
+                    if ($this.children(".drag-item").length === 0) {
+                        let draggedItem = ui.draggable.detach().css({
+                            position: "relative",
+                            top: "auto",
+                            left: "auto"
+                        });
+                        $this.append(draggedItem);
+                        draggedItem.draggable("disable");
+                    }
+                }
+            });
+        }
+        $("#tickets").on("submit", function (event) {
+            event.preventDefault();
+
+            let formData = {
+                'first-name': $("input[name='first-name']").val(),
+                'last-name': $("input[name='last-name']").val(),
+                'password': $("input[name='password']").val(),
+                'phone': $("input[name='phone']").val()
+            };
+
+            let veriAns = [];
+            $(".drop-box").each(function () {
+                let value = $(this).children(".drag-item").data("id");
+                if (!value) {
+                    alert("請完成數字驗證!");
+                    return false;
+                }
+                veriAns.push(value);
+            });
+            veriAns.sort((a, b) => a - b);
+            $(data[i]).text >= $
+            
+            if ($(".drop-")) {
+                alert("驗證碼順序不正確!");
+                return false;
+            }
+
+            $.ajax({
+                url: "./tickets.php",
+                type: "POST",
+                data: formData,
+                success: function (response) {
+                    alert(response.success);
+                    location.href = "home.html";
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            veri();
+        });
+    </script>
+</body>
+
+</html>
